@@ -58,3 +58,74 @@ def calculate_roa(net_profit, total_assets):
         (net_profit / total_assets) * 100,
         2
     )
+
+def calculate_debt_to_equity(
+    borrowings,
+    equity_capital,
+    reserves
+):
+    if borrowings == 0:
+        return 0
+
+    equity = equity_capital + reserves
+
+    if equity <= 0:
+        return None
+
+    return round(borrowings / equity, 2)
+
+
+def high_leverage_flag(
+    debt_to_equity,
+    broad_sector
+):
+    return (
+        debt_to_equity is not None
+        and debt_to_equity > 5
+        and broad_sector != "Financials"
+    )
+
+
+def calculate_interest_coverage(
+    operating_profit,
+    other_income,
+    interest
+):
+    if interest == 0:
+        return None
+
+    return round(
+        (operating_profit + other_income)
+        / interest,
+        2
+    )
+
+
+def icr_label(icr):
+    if icr is None:
+        return "Debt Free"
+    return None
+
+
+def icr_warning_flag(icr):
+    return icr is not None and icr < 1.5
+
+
+def calculate_net_debt(
+    borrowings,
+    investments
+):
+    return borrowings - investments
+
+
+def calculate_asset_turnover(
+    sales,
+    total_assets
+):
+    if total_assets == 0:
+        return None
+
+    return round(
+        sales / total_assets,
+        2
+    )
