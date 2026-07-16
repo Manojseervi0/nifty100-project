@@ -1,0 +1,48 @@
+filters:
+  min_roe:
+  max_de:
+  min_fcf:
+  min_revenue_cagr_5yr:
+  min_pat_cagr_5yr:
+  min_opm:
+  max_pe:
+  max_pb:
+  min_dividend_yield:
+  min_icr:
+  min_market_cap:
+  min_net_profit:
+  min_eps_cagr_5yr:
+  min_asset_turnover:
+  min_sales:
+
+presets:
+
+  quality_compounder:
+    min_roe: 15
+    max_de: 1
+    min_fcf: 0
+    min_revenue_cagr_5yr: 10
+
+  value_pick:
+    max_pe: 20
+    max_pb: 3
+    max_de: 2
+    min_dividend_yield: 1
+
+  growth_accelerator:
+    min_pat_cagr_5yr: 20
+    min_revenue_cagr_5yr: 15
+    max_de: 2
+
+  dividend_champion:
+    min_dividend_yield: 2
+    min_fcf: 0
+
+  debt_free_blue_chip:
+    max_de: 0
+    min_roe: 12
+    min_sales: 5000
+
+  turnaround_watch:
+    min_revenue_cagr_5yr: 10
+    min_fcf: 0
