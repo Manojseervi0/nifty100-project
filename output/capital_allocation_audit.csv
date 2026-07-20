@@ -1,0 +1,8 @@
+check,value
+raw_source_rows,1187
+raw_unique_tickers,100
+raw_exact_duplicate_rows,17
+raw_rows_in_duplicate_company_year_pairs,70
+clean_rows,1063
+canonical_companies_covered,92
+missing_canonical_companies,None

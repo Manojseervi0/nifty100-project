@@ -1,6 +1,8 @@
 # Nifty100 Analytics Dashboard
 
-A financial analytics and valuation platform built using Python, SQLite, Pandas, Plotly, and Streamlit. The project provides company-level financial analysis, screening, peer comparison, trend analysis, sector insights, capital allocation analysis, annual reports, and valuation flags for a 92-company universe.
+A comprehensive financial analytics, screening, valuation, cash-flow intelligence, NLP, and automated reporting platform built for a 92-company Nifty100 project universe.
+
+The project combines a validated SQLite data foundation with financial ratio computation, screening, peer comparison, interactive Streamlit dashboards, valuation analysis, automated pros/cons generation, cash-flow intelligence, capital allocation analysis, and PDF reporting.
 
 ---
 
@@ -12,118 +14,241 @@ A financial analytics and valuation platform built using Python, SQLite, Pandas,
 - NumPy
 - Plotly
 - Streamlit
+- Matplotlib
 - OpenPyXL
+- ReportLab
+
+---
+
+## Project Status
+
+| Sprint | Module | Status |
+|---|---|---|
+| Sprint 1 | Data Foundation | ✅ Completed |
+| Sprint 2 | Financial Ratio Engine | ✅ Completed |
+| Sprint 3 | Screener & Peer Comparison Engine | ✅ Completed |
+| Sprint 4 | Dashboard & Valuation Module | ✅ Completed |
+| Sprint 5 | Intelligence, NLP & PDF Reports | ✅ Completed |
 
 ---
 
 # Sprint 1 - Data Foundation
 
+Sprint 1 established the complete data foundation for the project.
+
 ## Completed
 
-- Environment Setup
-- SQLite Database Creation
-- ETL Pipeline
-- Data Loading
-- Data Quality Validation
-- 35+ Unit Tests
+- Environment setup
+- SQLite database creation
+- ETL pipeline
+- Data loading and normalisation
+- Data quality validation
+- Primary and foreign key checks
+- Load audit generation
+- 35+ ETL unit tests
 
-## Database Tables
+## Core Data Tables
 
-- companies
-- profitandloss
-- balancesheet
-- cashflow
-- analysis
-- documents
-- prosandcons
-- financial_ratios
-- sectors
-- peer_groups
-- peer_percentiles
-- stock_prices
-- market_cap
+- `companies`
+- `profitandloss`
+- `balancesheet`
+- `cashflow`
+- `analysis`
+- `documents`
+- `prosandcons`
+- `financial_ratios`
+- `sectors`
+- `peer_groups`
+- `peer_percentiles`
+- `stock_prices`
+- `market_cap`
 
-## Outputs
+## Major Outputs
 
-- nifty100.db
-- load_audit.csv
-- validation_failures.csv
-- exploratory_queries.sql
+```text
+nifty100.db
+output/load_audit.csv
+output/validation_failures.csv
+notebooks/exploratory_queries.sql
+```
+
+## Validation Summary
+
+- 92 companies loaded into the canonical company universe
+- Data quality rules implemented and reviewed
+- Foreign key validation completed
+- Critical ETL issues resolved before downstream analytics
+- Historical financial data made available for subsequent modules
 
 ---
 
 # Sprint 2 - Financial Ratio Engine
 
-## Completed
+Sprint 2 introduced the core financial analytics engine.
 
-- Profitability Ratios
-  - Net Profit Margin
-  - Operating Profit Margin
-  - ROE
-  - ROCE
-  - ROA
-- Leverage and Efficiency Ratios
-- Revenue CAGR Engine
-- PAT CAGR Engine
-- EPS CAGR Engine
-- CAGR Edge Case Handling
-- Cash Flow KPI Engine
-- Composite Quality Score
+## Profitability Metrics
+
+- Net Profit Margin
+- Operating Profit Margin
+- Return on Equity
+- Return on Capital Employed
+- Return on Assets
+
+## Leverage and Efficiency Metrics
+
+- Debt-to-Equity
+- Interest Coverage Ratio
+- Net Debt
+- Asset Turnover
+
+## Growth Metrics
+
+- Revenue CAGR
+- PAT CAGR
+- EPS CAGR
+
+CAGR calculations include edge-case handling for:
+
+- Normal positive growth
+- Turnaround
+- Decline to loss
+- Both periods negative
+- Zero base
+- Insufficient historical data
+
+## Cash Flow KPIs
+
+- Free Cash Flow
+- CFO Quality
+- CapEx Intensity
+- FCF Conversion
 - Capital Allocation Classification
-- Financial Ratio Validation
-- Edge Case Logging
-- 71 Unit Tests Passed
 
-## Database Updates
+## Composite Quality Score
 
-Added the following financial metrics:
+A composite quality score is calculated using profitability, cash quality, growth, and leverage metrics.
 
-- revenue_cagr_5yr
-- pat_cagr_5yr
-- eps_cagr_5yr
-- pat_cagr_5yr_flag
-- eps_cagr_5yr_flag
-- return_on_capital_employed_pct
-- composite_quality_score
+## Important Financial Ratio Columns
+
+The `financial_ratios` table includes metrics such as:
+
+- `net_profit_margin_pct`
+- `operating_profit_margin_pct`
+- `return_on_equity_pct`
+- `return_on_capital_employed_pct`
+- `debt_to_equity`
+- `interest_coverage`
+- `asset_turnover`
+- `free_cash_flow_cr`
+- `earnings_per_share`
+- `book_value_per_share`
+- `dividend_payout_ratio_pct`
+- `total_debt_cr`
+- `cash_from_operations_cr`
+- `revenue_cagr_5yr`
+- `pat_cagr_5yr`
+- `eps_cagr_5yr`
+- `composite_quality_score`
 
 ## Outputs
 
-- capital_allocation.csv
-- ratio_edge_cases.log
+```text
+output/capital_allocation.csv
+output/ratio_edge_cases.log
+```
 
 ## Validation Summary
 
-- Financial ratio data available across the project company universe
-- Duplicate company-year records identified and cleaned during integration QA
-- 71/71 unit tests passed
+- Formula edge cases handled
+- Financial-sector leverage exceptions handled
+- Duplicate company-year records reviewed during integration QA
+- 71 unit tests passed
 
 ---
 
-# Sprint 4 - Streamlit Dashboard and Valuation
+# Sprint 3 - Screener & Peer Comparison Engine
 
-Sprint 4 delivers an interactive 8-screen financial analytics dashboard and a valuation module for the Nifty100 project.
+Sprint 3 introduced financial screening and peer-relative company analysis.
 
-## Dashboard Run Instructions
+## Financial Screener
 
-Activate the project virtual environment and run:
+The screener supports filters across metrics such as:
+
+- ROE
+- Debt-to-Equity
+- Free Cash Flow
+- Revenue CAGR
+- PAT CAGR
+- Operating Profit Margin
+- P/E
+- P/B
+- Dividend Yield
+- Interest Coverage Ratio
+- Market Capitalisation
+- Net Profit
+- EPS CAGR
+- Asset Turnover
+- Revenue
+
+## Screener Presets
+
+Available presets include:
+
+- Quality Compounder
+- Value Pick
+- Growth Accelerator
+- Dividend Champion
+- Debt-Free Blue Chip
+- Turnaround Watch
+
+## Peer Comparison Engine
+
+Peer percentile rankings are computed using:
+
+- ROE
+- ROCE
+- Net Profit Margin
+- Debt-to-Equity
+- Free Cash Flow
+- PAT CAGR
+- Revenue CAGR
+- EPS CAGR
+- Interest Coverage
+- Asset Turnover
+
+For Debt-to-Equity, percentile logic is inverted so lower leverage receives a better rank.
+
+## Major Outputs
+
+```text
+output/screener_output.xlsx
+output/peer_comparison.xlsx
+reports/radar_charts/
+```
+
+Peer rankings are stored in the `peer_percentiles` table.
+
+---
+
+# Sprint 4 - Streamlit Dashboard & Valuation
+
+Sprint 4 delivered an interactive 8-screen Streamlit dashboard and a sector-relative valuation module.
+
+## Run the Dashboard
 
 ```bash
 streamlit run src/dashboard/app.py
 ```
 
-The dashboard will open locally at:
+The application opens locally at:
 
 ```text
 http://localhost:8501
 ```
 
----
+## Dashboard Screens
 
-# Dashboard Screens
-
-## 1. Home
-
-The Home screen provides a high-level overview of the company universe.
+### 1. Home
 
 Features:
 
@@ -135,21 +260,15 @@ Features:
 - Debt-Free Companies count
 - Sector breakdown donut chart
 - Top 5 companies by Composite Quality Score
-- Year selector from 2019 to 2024
+- Financial year selector
 
-All dashboard metrics update according to the selected year.
-
----
-
-## 2. Company Profile
-
-The Company Profile screen provides detailed company-level financial analysis.
+### 2. Company Profile
 
 Features:
 
-- Company search by name or ticker
+- Search by company name or ticker
 - Company name and ticker
-- Sector and sub-sector information
+- Sector and sub-sector
 - Company description
 - ROE
 - ROCE
@@ -161,99 +280,57 @@ Features:
 - ROE and ROCE historical trend
 - Company pros and cons
 
-Companies with partial financial data are handled gracefully and unavailable metrics are displayed as `N/A`.
+Missing values are displayed as `N/A`.
 
----
+### 3. Financial Screener
 
-## 3. Financial Screener
+Features:
 
-The Financial Screener allows companies to be filtered using multiple financial metrics.
+- Live financial filters
+- Six preset screeners
+- Result count
+- Composite Quality Score
+- Dynamic results table
+- CSV export
 
-Available filters include:
-
-- Minimum ROE
-- Maximum Debt-to-Equity
-- Minimum Free Cash Flow
-- Minimum Revenue CAGR
-- Minimum PAT CAGR
-- Minimum Operating Profit Margin
-- Maximum P/E
-- Maximum P/B
-- Minimum Dividend Yield
-- Minimum Interest Coverage Ratio
-
-Available presets:
-
-- Quality
-- Value
-- Growth
-- Dividend
-- Debt-Free
-- Turnaround
-
-The results table updates dynamically as filters change.
-
-The filtered results can also be downloaded as a CSV file.
-
----
-
-## 4. Peer Comparison
-
-The Peer Comparison screen compares companies within predefined peer groups.
+### 4. Peer Comparison
 
 Features:
 
 - Peer group selection
 - Company selection
-- Radar chart with 8 financial metrics
-- Selected company versus peer group average
+- Radar chart
+- Eight financial metrics
+- Company versus peer-group average
 - KPI comparison table
 - Benchmark company highlighting
 
-The radar chart is implemented using Plotly `Scatterpolar`.
-
----
-
-## 5. Trend Analysis
-
-The Trend Analysis screen allows historical comparison of up to three financial metrics.
+### 5. Trend Analysis
 
 Features:
 
 - Company search
 - Multi-metric selection
-- Maximum of three metrics per chart
+- Maximum three metrics per chart
 - Up to 10 years of historical data
 - YoY percentage change annotations
 - Partial-data handling
 
-When fewer than 10 years of data are available, the dashboard displays an informational message showing the number of available years.
-
----
-
-## 6. Sector Analysis
-
-The Sector Analysis screen provides a visual comparison of companies within a selected sector.
+### 6. Sector Analysis
 
 Features:
 
 - Sector selection
 - Revenue on X-axis
 - ROE on Y-axis
-- Market Capitalisation represented by bubble size
-- Sub-sector represented using bubble categories
-- Company-level hover information
+- Market Capitalisation as bubble size
+- Sub-sector as bubble category
+- Company hover information
 - Sector median KPI chart
 
-The screen helps compare profitability, scale, growth, and leverage within sectors.
+### 7. Capital Allocation Map
 
----
-
-## 7. Capital Allocation Map
-
-The Capital Allocation screen analyses how companies generate and use cash.
-
-Companies are classified into eight possible capital allocation patterns based on the signs of:
+The screen classifies companies using the signs of:
 
 - Operating Cash Flow
 - Investing Cash Flow
@@ -264,43 +341,35 @@ Features:
 - Treemap covering the company universe
 - Capital allocation pattern grouping
 - Pattern selector
-- Company list for the selected allocation pattern
+- Company list by selected pattern
 
----
-
-## 8. Annual Reports
-
-The Annual Reports screen provides available company annual report links.
+### 8. Annual Reports
 
 Features:
 
 - Company search
-- List of available report years
+- Available report years
 - Clickable annual report links
-- Unavailable report handling
-- Red `Report unavailable` status for invalid or unavailable links
-
-Companies without available annual reports are handled without application errors.
+- Missing report handling
+- Unavailable report status
 
 ---
 
-# Valuation Module
+## Valuation Module
 
-The valuation module is located at:
+Location:
 
 ```text
 src/analytics/valuation.py
 ```
 
-Run the valuation module using:
+Run using:
 
 ```bash
 python -m src.analytics.valuation
 ```
 
-## Valuation Metrics
-
-The module calculates:
+### Valuation Metrics
 
 - P/E
 - P/B
@@ -310,69 +379,36 @@ The module calculates:
 - Sector Median P/E comparison
 - P/E deviation from sector median
 
-FCF Yield is calculated as:
+FCF Yield:
 
 ```text
 FCF Yield = Free Cash Flow / Market Capitalisation × 100
 ```
 
-## Valuation Flags
+### Valuation Flags
 
-Companies are classified using sector-relative P/E valuation.
-
-### Caution
+**Caution**
 
 ```text
 P/E > Sector Median P/E × 1.5
 ```
 
-### Discount
+**Discount**
 
 ```text
 P/E < Sector Median P/E × 0.7
 ```
 
-### Fair
+**Fair**
 
-Companies that fall between the Discount and Caution thresholds.
+Companies falling between the Discount and Caution thresholds.
 
----
-
-# Valuation Outputs
-
-## valuation_summary.xlsx
-
-Location:
+### Valuation Outputs
 
 ```text
 output/valuation_summary.xlsx
-```
-
-Contains 92 companies with the following columns:
-
-- company_id
-- company_name
-- sector
-- P/E
-- P/B
-- EV/EBITDA
-- FCF_yield_pct
-- 5yr_median_PE
-- PE_vs_sector_median_pct
-- flag
-
-## valuation_flags.csv
-
-Location:
-
-```text
 output/valuation_flags.csv
 ```
-
-Contains companies classified as:
-
-- Caution
-- Discount
 
 Final valuation output:
 
@@ -383,54 +419,417 @@ Final valuation output:
 
 ---
 
-# Integration QA
-
-The complete dashboard was tested across companies from multiple sectors including:
-
-- Information Technology
-- Financials
-- FMCG
-- Energy
-- Healthcare
-
-## QA Results
+## Sprint 4 Integration QA
 
 - All 8 Streamlit screens load successfully
-- Dashboard tested across multiple company tickers
+- Dashboard tested across multiple sectors and tickers
 - Partial-data companies do not crash the application
-- Missing metrics are displayed as `N/A`
-- Companies with fewer than 10 years of data are handled correctly
-- Screener tested with extreme filter values
-- Empty screener results do not crash the application
-- CSV download tested successfully
-- Charts fit within the dashboard page width
+- Missing metrics display as `N/A`
+- Screener works with extreme filter values
+- Empty screener results are handled safely
+- CSV download works correctly
+- Charts fit within the page width
 - Company Profile load time tested below 3 seconds
-- Valuation summary contains exactly 92 companies
+- Valuation output contains 92 companies
 
 ---
 
-# Data Quality and Edge Cases
+# Sprint 5 - Intelligence, NLP & PDF Reports
 
-During integration testing, several data edge cases were identified.
+Sprint 5 added automated financial intelligence, NLP processing, cash-flow analysis, capital allocation reporting, and PDF report generation.
+
+## Day 29 - NLP Analysis Parser
+
+Location:
+
+```text
+src/nlp/parser.py
+```
+
+Run using:
+
+```bash
+python -m src.nlp.parser
+```
+
+The parser extracts structured values from:
+
+- `compounded_sales_growth`
+- `compounded_profit_growth`
+- `stock_price_cagr`
+- `roe`
+
+Supported formats include:
+
+```text
+10 Years: 21%
+5 Years 14%
+1 Year: -2%
+Last Year: 12%
+TTM: -3%
+```
+
+### Final Results
+
+- Analysis source rows: 20
+- Parsed metric records: 80
+- Parse failures: 0
+- CAGR comparisons: 10
+- Divergences above 5 percentage points: 0
+
+### Outputs
+
+```text
+output/analysis_parsed.csv
+output/parse_failures.csv
+output/cagr_cross_validation.csv
+```
+
+---
+
+## Day 30 - Automated Pros and Cons Generator
+
+Location:
+
+```text
+src/nlp/pros_cons_generator.py
+```
+
+Run using:
+
+```bash
+python -m src.nlp.pros_cons_generator
+```
+
+The module uses:
+
+- 12 Pro Rules
+- 12 Con Rules
+- Confidence scoring
+- Financial-sector exceptions
+- Missing-data handling
+
+### Final Results
+
+- Companies processed: 92
+- Total generated records: 550
+- Pros generated: 405
+- Cons generated: 145
+- Strict rule signals: 506
+- Coverage fallback signals: 44
+- Companies missing a pro: 0
+- Companies missing a con: 0
+
+### Output
+
+```text
+output/pros_cons_generated.csv
+```
+
+---
+
+## Day 31 - Cash Flow Intelligence
+
+Location:
+
+```text
+src/analytics/cashflow_kpis.py
+```
+
+Run using:
+
+```bash
+python -m src.analytics.cashflow_kpis
+```
+
+The module calculates:
+
+- CFO Quality Score
+- CFO Quality Label
+- CapEx Intensity
+- CapEx Classification
+- 5-Year FCF CAGR
+- FCF Conversion Rate
+- Distress Signal
+- Deleveraging Flag
+- Capital Allocation Pattern
+
+### Final Results
+
+- Companies processed: 92
+- Distress alerts: 13
+- Deleveraging companies: 25
+- Missing cash-flow cases: 1
+
+### Outputs
+
+```text
+output/cashflow_intelligence.xlsx
+output/distress_alerts.csv
+```
+
+---
+
+## Day 32 - Capital Allocation Analysis
+
+Location:
+
+```text
+src/analytics/capital_allocation_report.py
+```
+
+Run using:
+
+```bash
+python -m src.analytics.capital_allocation_report
+```
+
+The module:
+
+- Normalises ticker values
+- Normalises financial years
+- Removes duplicate records
+- Resolves conflicting company-year records
+- Validates the canonical company universe
+- Generates latest-year pattern distribution
+- Tracks year-over-year capital allocation changes
+- Updates Cash Flow Intelligence output
+
+### Final Results
+
+- Raw source rows: 1,187
+- Clean capital rows: 1,063
+- Canonical company coverage: 92/92
+- Missing canonical companies: 0
+- Latest pattern companies: 92
+- Pattern changes identified: 530
+- Cash Flow Intelligence rows: 92
+
+### Outputs
+
+```text
+output/capital_allocation.csv
+output/capital_allocation_distribution.csv
+output/pattern_changes.csv
+output/capital_allocation_audit.csv
+output/capital_allocation_raw_backup.csv
+```
+
+---
+
+## Day 33 - Company Tearsheet Reports
+
+Location:
+
+```text
+src/reports/tearsheet.py
+```
+
+Run using:
+
+```bash
+python -m src.reports.tearsheet
+```
+
+The template was tested using:
+
+- TCS
+- HDFCBANK
+- RELIANCE
+- SUNPHARMA
+- TATASTEEL
+
+### Page 1
+
+- Company header
+- Six KPI tiles
+- Revenue historical chart
+- Net Profit historical chart
+- ROE trend
+- ROCE trend
+
+### Page 2
+
+- Balance Sheet composition
+- Cash Flow waterfall
+- Automated Pros
+- Automated Cons
+- Capital Allocation badge
+
+### Sample Test Results
+
+- Requested tickers: 5
+- Generated PDFs: 5
+- Failures: 0
+
+Generated location:
+
+```text
+reports/tearsheets/
+```
+
+---
+
+## Day 34 - Batch Tearsheets & Sector Reports
+
+Location:
+
+```text
+src/reports/sector_report.py
+```
+
+Run using:
+
+```bash
+python -m src.reports.sector_report
+```
+
+### Company Tearsheet Results
+
+- Canonical companies: 92
+- Eligible tearsheets: 91
+- Generated tearsheets: 91
+- Skipped companies: 1
+- PDFs below 30 KB: 0
+- Tearsheet failures: 0
+
+### Skipped Company
+
+```text
+JIOFIN
+```
+
+Reason:
+
+```text
+Fewer than 3 years of Profit & Loss data
+```
+
+### Sector Report Results
+
+- Raw broad sectors: 10
+- Reporting sectors: 11
+- Generated sector PDFs: 11
+- Sector report failures: 0
+
+### Outputs
+
+```text
+reports/tearsheets/
+reports/sector/
+
+output/skipped_tearsheets.csv
+output/tearsheet_batch_audit.csv
+output/sector_report_audit.csv
+```
+
+---
+
+## Day 35 - Portfolio Summary PDF
+
+Location:
+
+```text
+src/reports/portfolio_summary.py
+```
+
+Run using:
+
+```bash
+python -m src.reports.portfolio_summary
+```
+
+Each company page includes:
+
+- Company name
+- Ticker
+- Sector
+- Six major financial KPIs
+- Latest-year values
+- Previous-year values
+- Trend indicators
+
+### Final Results
+
+- Canonical companies: 92
+- Expected pages: 92
+- Generated portfolio pages: 92
+- Output size: approximately 0.31 MB
+
+### Output
+
+```text
+reports/portfolio/portfolio_summary.pdf
+```
+
+---
+
+# Sprint 5 Final Integration QA
+
+## Pros and Cons Coverage
+
+```text
+Companies: 92
+Missing Pro: 0
+Missing Con: 0
+```
+
+## Cash Flow Intelligence Validation
+
+```text
+Rows: 92
+Unique companies: 92
+```
+
+Required columns:
+
+- `company_id`
+- `sector`
+- `cfo_quality_score`
+- `cfo_quality_label`
+- `capex_intensity_pct`
+- `capex_label`
+- `fcf_cagr_5yr`
+- `fcf_conversion_pct`
+- `distress_flag`
+- `deleveraging_flag`
+- `capital_allocation_label`
+
+## PDF Validation
+
+```text
+Company tearsheets generated : 91
+Documented skips              : 1
+Sector reports                : 11
+Portfolio summary pages       : 92
+```
+
+Additional validation:
+
+- No batch tearsheet generation failures
+- No sector report generation failures
+- No generated tearsheet below 30 KB
+- Skipped company documented
+- 92-company Pros/Cons coverage achieved
+- 92-company Cash Flow Intelligence coverage achieved
+
+---
+
+# Data Quality & Edge Cases
 
 ## Duplicate Records
 
 Duplicate company-year records were identified in:
 
-- financial_ratios
-- cashflow
-- profitandloss
-- balancesheet
+- `financial_ratios`
+- `cashflow`
+- `profitandloss`
+- `balancesheet`
+- `capital_allocation.csv`
 
-The duplicate records were reviewed before cleanup.
+Exact duplicate records were reviewed and cleaned where required.
 
-Exact duplicate records were removed while retaining one valid record for each company-year combination.
-
-Conflicting ABB cash-flow-related records were reviewed separately and the internally consistent data series was retained.
-
-## Partial Data
-
-Some companies have fewer than 10 years of historical financial data.
+## Partial Historical Data
 
 Examples include:
 
@@ -441,18 +840,16 @@ Examples include:
 - IRFC
 - LODHA
 
-The Trend Analysis screen displays the available number of historical years instead of failing.
+JIOFIN currently has fewer than three years of Profit & Loss history and is therefore skipped during batch tearsheet generation.
 
-## Missing Financial Ratio Data
+## Missing Financial Data
 
-ATGL and SBIN are part of the canonical 92-company universe but do not currently have corresponding records in the `financial_ratios` table.
+The application handles partial or missing records using:
 
-The dashboard handles these companies as partial-data cases:
-
-- Company Profile remains accessible
-- Available company information is displayed
-- Available Profit & Loss data is displayed
-- Missing ratio metrics are shown as `N/A`
+- `N/A` values
+- Missing-data messages
+- Safe report fallbacks
+- Canonical company-universe joins
 
 ---
 
@@ -466,44 +863,7 @@ Streamlit database query functions use:
 
 This reduces repeated SQLite queries and improves dashboard responsiveness.
 
-Company Profile performance was tested using multiple companies and observed load times remained below the Sprint requirement of 3 seconds.
-
----
-
-# Sprint 4 Retrospective
-
-## What Went Well
-
-- All 8 dashboard screens were successfully integrated
-- Shared cached database functions reduced repeated query execution
-- Plotly provided responsive and interactive financial visualisations
-- Screener filtering and CSV export worked successfully
-- The valuation module successfully generated outputs for the complete 92-company master universe
-- Partial and missing data were handled without application crashes
-
-## Data Challenges Discovered
-
-- Duplicate company-year records existed in multiple financial tables
-- Some companies had inconsistent historical data coverage
-- The company master table and financial ratio data initially had a universe mismatch
-- Some companies had missing financial ratio data while other financial datasets were available
-
-## UX Decisions
-
-- Missing financial values are shown as `N/A`
-- Partial historical data displays an informational message
-- Invalid or unavailable annual report URLs display a clear unavailable status
-- Capital allocation patterns can be selected to display the corresponding companies
-- Dashboard charts use responsive page-width layouts
-
-## Future Improvements
-
-- Improve source-level data consistency before database loading
-- Add automated duplicate detection to the ETL pipeline
-- Add more historical market data
-- Add automated dashboard integration tests
-- Improve company-level data completeness
-- Add deployment support for a hosted Streamlit environment
+Company Profile performance remained below the Sprint requirement of 3 seconds during testing.
 
 ---
 
@@ -516,16 +876,49 @@ nifty100-project/
 ├── README.md
 │
 ├── output/
+│   ├── analysis_parsed.csv
+│   ├── parse_failures.csv
+│   ├── cagr_cross_validation.csv
+│   ├── pros_cons_generated.csv
+│   ├── cashflow_intelligence.xlsx
+│   ├── distress_alerts.csv
+│   ├── capital_allocation.csv
+│   ├── capital_allocation_distribution.csv
+│   ├── capital_allocation_audit.csv
+│   ├── capital_allocation_raw_backup.csv
+│   ├── pattern_changes.csv
+│   ├── skipped_tearsheets.csv
+│   ├── tearsheet_batch_audit.csv
+│   ├── sector_report_audit.csv
 │   ├── valuation_summary.xlsx
 │   └── valuation_flags.csv
 │
+├── reports/
+│   ├── radar_charts/
+│   ├── tearsheets/
+│   ├── sector/
+│   └── portfolio/
+│       └── portfolio_summary.pdf
+│
 └── src/
     ├── analytics/
-    │   └── valuation.py
+    │   ├── valuation.py
+    │   ├── cashflow_kpis.py
+    │   └── capital_allocation_report.py
+    │
+    ├── nlp/
+    │   ├── __init__.py
+    │   ├── parser.py
+    │   └── pros_cons_generator.py
+    │
+    ├── reports/
+    │   ├── __init__.py
+    │   ├── tearsheet.py
+    │   ├── sector_report.py
+    │   └── portfolio_summary.py
     │
     └── dashboard/
         ├── app.py
-        │
         ├── pages/
         │   ├── 01_home.py
         │   ├── 02_profile.py
@@ -535,41 +928,139 @@ nifty100-project/
         │   ├── 06_sectors.py
         │   ├── 07_capital.py
         │   └── 08_reports.py
-        │
         └── utils/
             └── db.py
 ```
 
 ---
 
-# Sprint 4 Completion Status
+# Main Run Commands
 
-- [x] Streamlit application scaffold
-- [x] Home screen
-- [x] Company Profile screen
-- [x] Financial Screener
-- [x] Peer Comparison
-- [x] Trend Analysis
-- [x] Sector Analysis
-- [x] Capital Allocation Map
-- [x] Annual Reports
-- [x] Valuation module
-- [x] valuation_summary.xlsx generated
-- [x] valuation_flags.csv generated
-- [x] 92-company valuation coverage
-- [x] Screener CSV export
-- [x] Partial-data handling
-- [x] Integration QA
-- [x] Performance testing
-- [x] README documentation
+## Dashboard
+
+```bash
+streamlit run src/dashboard/app.py
+```
+
+## Valuation Module
+
+```bash
+python -m src.analytics.valuation
+```
+
+## NLP Parser
+
+```bash
+python -m src.nlp.parser
+```
+
+## Pros and Cons Generator
+
+```bash
+python -m src.nlp.pros_cons_generator
+```
+
+## Cash Flow Intelligence
+
+```bash
+python -m src.analytics.cashflow_kpis
+```
+
+## Capital Allocation Report
+
+```bash
+python -m src.analytics.capital_allocation_report
+```
+
+## Sample Company Tearsheets
+
+```bash
+python -m src.reports.tearsheet
+```
+
+## Batch Tearsheets and Sector Reports
+
+```bash
+python -m src.reports.sector_report
+```
+
+## Portfolio Summary
+
+```bash
+python -m src.reports.portfolio_summary
+```
 
 ---
 
-## Final Status
+# Sprint Completion Status
 
-Sprint 4 development, integration QA, valuation outputs, and technical documentation are complete.
+## Sprint 1
 
-The dashboard can be started using:
+- [x] Data Foundation
+- [x] ETL Pipeline
+- [x] SQLite Database
+- [x] Data Quality Validation
+
+## Sprint 2
+
+- [x] Financial Ratio Engine
+- [x] CAGR Engine
+- [x] Cash Flow KPIs
+- [x] Composite Quality Score
+
+## Sprint 3
+
+- [x] Financial Screener
+- [x] Screener Presets
+- [x] Peer Comparison
+- [x] Peer Percentile Rankings
+
+## Sprint 4
+
+- [x] 8-Screen Streamlit Dashboard
+- [x] Valuation Module
+- [x] Screener CSV Export
+- [x] Integration QA
+
+## Sprint 5
+
+- [x] NLP Analysis Parser
+- [x] CAGR Cross-Validation
+- [x] Automated Pros and Cons
+- [x] Cash Flow Intelligence
+- [x] Distress Signal Detection
+- [x] Deleveraging Detection
+- [x] Capital Allocation Intelligence
+- [x] Capital Allocation Data Cleaning
+- [x] Pattern Change Tracking
+- [x] Company Tearsheet Reports
+- [x] Batch Tearsheet Generation
+- [x] 11 Sector PDF Reports
+- [x] Portfolio Summary Report
+- [x] Final Integration QA
+
+---
+
+# Final Status
+
+Sprint 1 through Sprint 5 development is complete.
+
+The project currently provides:
+
+- A validated SQLite financial database
+- Automated financial ratio calculations
+- Financial screening
+- Peer comparison
+- Interactive Streamlit analytics
+- Sector-relative valuation
+- NLP-based financial signal generation
+- Cash-flow intelligence
+- Capital allocation analysis
+- Automated company tearsheets
+- Sector-level PDF reports
+- A complete 92-company portfolio summary
+
+Start the dashboard using:
 
 ```bash
 streamlit run src/dashboard/app.py

@@ -1,0 +1,11 @@
+company_id,metric_type,parsed_value_pct,computed_value_pct,divergence_pct_points,divergence_flag
+HDFCBANK,revenue_cagr,22.0,21.95,0.05000000000000071,OK
+HDFCBANK,pat_cagr,23.0,23.87,0.870000000000001,OK
+INFY,revenue_cagr,13.0,13.2,0.1999999999999993,OK
+INFY,pat_cagr,11.0,11.24,0.2400000000000002,OK
+SBILIFE,revenue_cagr,24.0,24.23,0.23000000000000043,OK
+SBILIFE,pat_cagr,6.0,7.37,1.37,OK
+TCS,revenue_cagr,10.0,10.46,0.46000000000000085,OK
+TCS,pat_cagr,8.0,7.87,0.1299999999999999,OK
+WIPRO,revenue_cagr,9.0,,,NO_COMPUTED_VALUE
+WIPRO,pat_cagr,4.0,,,NO_COMPUTED_VALUE

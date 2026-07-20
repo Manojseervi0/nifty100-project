@@ -1,5 +1,22 @@
+# Virtual environment
 venv/
+
+# Environment secrets
+.env
+
+# Python cache
 __pycache__/
+**/__pycache__/
 .pytest_cache/
 *.pyc
+
+# Local database
 *.db
+
+# Sprint 5 generated PDF reports
+reports/tearsheets/*.pdf
+reports/sector/*.pdf
+reports/portfolio/*.pdf
+
+# Generated raw backup
+output/capital_allocation_raw_backup.csv
