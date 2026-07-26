@@ -23,3 +23,6 @@ six==1.17.0
 SQLAlchemy==2.0.51
 typing_extensions==4.15.0
 tzdata==2026.2
+fastapi==0.140.0
+uvicorn[standard]==0.51.0
+scikit-learn==1.9.0
