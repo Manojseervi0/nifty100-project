@@ -277,14 +277,13 @@ def list_companies(
         connection.close()
 
     latest_ratios = _latest_rows_by_company(
-        "financial_ratios",
-        [
-            "company_id",
-            "year",
-            "return_on_equity_pct",
-            "return_on_capital_employed_pct",
-        ],
-    )
+    "financial_ratios",
+    [
+        "company_id",
+        "year",
+        "return_on_equity_pct",
+    ],
+)
 
     sector_filter = sector.strip().casefold() if sector else None
     category_filter = (
@@ -321,7 +320,7 @@ def list_companies(
                 "sub_sector": company.get("sub_sector"),
                 "market_cap_category": company.get("market_cap_category"),
                 "roe_pct": ratio.get("return_on_equity_pct"),
-                "roce_pct": ratio.get("return_on_capital_employed_pct"),
+                "roce_pct": ratio.get("return_on_capital_employed_pct", None),
             }
         )
 

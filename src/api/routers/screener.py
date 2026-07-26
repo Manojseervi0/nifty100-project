@@ -198,10 +198,7 @@ def run_screener(
                 year,
                 return_on_equity_pct,
                 debt_to_equity,
-                free_cash_flow_cr,
-                revenue_cagr_5yr,
-                pat_cagr_5yr,
-                composite_quality_score
+                free_cash_flow_cr
             FROM financial_ratios
             """
         ).fetchall()
