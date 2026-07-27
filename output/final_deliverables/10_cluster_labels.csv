@@ -1,0 +1,93 @@
+company_id,cluster_id,cluster_name,distance_from_centroid
+RELIANCE,0,Defensive Quality,0.217367
+ATGL,0,Defensive Quality,0.251103
+BPCL,0,Defensive Quality,0.260789
+TCS,0,Defensive Quality,0.278938
+SHREECEM,0,Defensive Quality,0.280689
+MARUTI,0,Defensive Quality,0.29405
+IOC,0,Defensive Quality,0.295403
+TATASTEEL,0,Defensive Quality,0.338776
+TECHM,0,Defensive Quality,0.347628
+ONGC,0,Defensive Quality,0.378494
+TATAMOTORS,0,Defensive Quality,0.409069
+GAIL,0,Defensive Quality,0.413709
+TORNTPHARM,0,Defensive Quality,0.417944
+MOTHERSON,0,Defensive Quality,0.432238
+GODREJCP,0,Defensive Quality,0.449606
+EICHERMOT,0,Defensive Quality,0.479241
+ITC,0,Defensive Quality,0.495882
+BAJAJ-AUTO,0,Defensive Quality,0.544402
+NTPC,0,Defensive Quality,0.570954
+INFY,0,Defensive Quality,0.580767
+PIDILITIND,0,Defensive Quality,0.610178
+ABB,0,Defensive Quality,0.611151
+ASIANPAINT,0,Defensive Quality,0.611249
+HCLTECH,0,Defensive Quality,0.66196
+M&M,0,Defensive Quality,0.664826
+DIVISLAB,0,Defensive Quality,0.700323
+BOSCHLTD,0,Defensive Quality,0.739403
+DABUR,0,Defensive Quality,0.743129
+AMBUJACEM,0,Defensive Quality,0.758882
+JSWENERGY,0,Defensive Quality,0.770325
+APOLLOHOSP,0,Defensive Quality,0.774789
+NESTLEIND,0,Defensive Quality,0.784313
+LT,0,Defensive Quality,0.78795
+GRASIM,0,Defensive Quality,0.886882
+ICICIGI,0,Defensive Quality,0.903771
+JSWSTEEL,0,Defensive Quality,0.908538
+BHARTIARTL,0,Defensive Quality,0.938447
+HAVELLS,0,Defensive Quality,0.94658
+TATAPOWER,0,Defensive Quality,1.060913
+NAUKRI,0,Defensive Quality,1.092899
+HEROMOTOCO,0,Defensive Quality,1.099585
+JINDALSTEL,0,Defensive Quality,1.10819
+SUNPHARMA,0,Defensive Quality,1.136642
+ADANIPOWER,0,Defensive Quality,1.170801
+POWERGRID,0,Defensive Quality,1.175839
+DRREDDY,0,Defensive Quality,1.244005
+JIOFIN,0,Defensive Quality,1.273666
+NHPC,0,Defensive Quality,1.447137
+SIEMENS,0,Defensive Quality,1.467224
+HINDUNILVR,0,Defensive Quality,1.581115
+BRITANNIA,0,Defensive Quality,1.613587
+TATACONSUM,0,Defensive Quality,1.800597
+LODHA,0,Defensive Quality,1.845297
+LICI,0,Defensive Quality,1.93291
+BHEL,0,Defensive Quality,2.077509
+DLF,0,Defensive Quality,2.139749
+ICICIPRULI,0,Defensive Quality,2.296983
+HINDALCO,0,Defensive Quality,2.681182
+COALINDIA,0,Defensive Quality,5.576687
+RECLTD,1,Distressed or Turnaround,0.677779
+IRFC,1,Distressed or Turnaround,0.738287
+INDUSINDBK,1,Distressed or Turnaround,0.80277
+SBIN,1,Distressed or Turnaround,0.985431
+BAJAJFINSV,1,Distressed or Turnaround,1.016187
+PFC,1,Distressed or Turnaround,1.075435
+SHRIRAMFIN,1,Distressed or Turnaround,1.126137
+CHOLAFIN,1,Distressed or Turnaround,1.184304
+PNB,1,Distressed or Turnaround,1.217952
+ICICIBANK,1,Distressed or Turnaround,1.290422
+TVSMOTOR,1,Distressed or Turnaround,1.328363
+KOTAKBANK,1,Distressed or Turnaround,1.632109
+AXISBANK,1,Distressed or Turnaround,1.938786
+BANKBARODA,1,Distressed or Turnaround,2.06064
+CANBK,1,Distressed or Turnaround,2.85498
+HDFCBANK,1,Distressed or Turnaround,4.992934
+BEL,2,High-Quality Compounders,0.749165
+HAL,2,High-Quality Compounders,0.749165
+CIPLA,3,Emerging Growth,0.0
+TITAN,4,Value Cyclicals,0.621037
+DMART,4,Value Cyclicals,0.817312
+ADANIENT,4,Value Cyclicals,0.893201
+ADANIPORTS,4,Value Cyclicals,0.932787
+LTIM,4,Value Cyclicals,1.006322
+SBILIFE,4,Value Cyclicals,1.056279
+HDFCLIFE,4,Value Cyclicals,1.107335
+ADANIENSOL,4,Value Cyclicals,1.113237
+IRCTC,4,Value Cyclicals,1.139654
+BAJAJHLDNG,4,Value Cyclicals,1.185389
+TRENT,4,Value Cyclicals,1.756223
+ADANIGREEN,4,Value Cyclicals,2.413873
+BAJFINANCE,4,Value Cyclicals,2.431988
+INDIGO,4,Value Cyclicals,2.810119

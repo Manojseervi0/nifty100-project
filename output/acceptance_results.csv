@@ -1,0 +1,21 @@
+gate_id,title,status,evidence
+AC-01,Companies table contains exactly 92 rows,PASS,companies=92
+AC-02,"At least 90% have 10+ years of P&L, BS and CF",PASS,84/92 = 91.30%
+AC-03,Foreign-key check returns zero rows,PASS,issues=0
+AC-04,"Financial ratios contain at least 1,100 rows",PASS,rows=1184
+AC-05,Revenue CAGR spot-check is within 0.1%,PASS,"manual=10.4636%, reported=10.4600%, diff=0.0036%"
+AC-06,ROE matches master within 5% for five companies,PASS,TCS: diff=1.06; INFY: diff=2.01; ITC: diff=1.62; RELIANCE: diff=0.71; HDFCBANK: diff=2.76
+AC-07,Quality screener returns 10-50 companies,PASS,"HTTP 200, count=38"
+AC-08,Company Profile loads under 3 seconds,PASS,5/5 companies loaded within 3s
+AC-09,Screener CSV is valid and well formed,PASS,"rows=92, columns=25"
+AC-10,No overflow in five sampled tearsheets,PASS,ABB_tearsheet.pdf: OK; ADANIENSOL_tearsheet.pdf: OK; ADANIENT_tearsheet.pdf: OK; ADANIGREEN_tearsheet.pdf: OK; ADANIPORTS_tearsheet.pdf: OK
+AC-11,Health endpoint returns HTTP 200,PASS,"HTTP 200, status=ok"
+AC-12,TCS ratios endpoint returns 10+ years,PASS,"HTTP 200, records=12"
+AC-13,API screener matches screener_output.xlsx,PASS,"dashboard=53, api=53, only_dashboard=[], only_api=[]"
+AC-14,Peer percentiles cover 11 peer groups,PASS,groups=11
+AC-15,All 92 companies have a cluster ID,PASS,"unique=92, missing_cluster=0"
+AC-16,All 92 companies have at least one pro and one con,PASS,"complete=92/92, missing=[]"
+AC-17,92 tearsheets exist and each is at least 30 KB,PASS,"PDFs=92, >=30KB=92, missing=[], undersized=[]"
+AC-18,Pytest has 60+ tests and zero failures,PASS,"passed=162, failed=0"
+AC-19,validation_failures.csv has required columns,PASS,"columns=['company_id', 'field', 'issue', 'rule_id', 'severity', 'table_name']"
+AC-20,Analyst guide has at least 10 pages,PASS,pages=13

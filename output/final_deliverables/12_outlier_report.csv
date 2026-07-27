@@ -1,0 +1,14 @@
+company_id,company_name,broad_sector,metric,metric_label,metric_value,sector_mean,sector_std,z_score,absolute_z_score
+BAJAJHLDNG,Bajaj Holdings & Investment Ltd,Financials,net_profit_margin_pct,Net Profit Margin,432.73,38.417174,85.736841,4.599106,4.599106
+PNB,Punjab National Bank,Financials,asset_turnover,Asset Turnover,1.507,0.193546,0.296223,4.434,4.434
+HDFCBANK,HDFC Bank Ltd,Financials,operating_profit_margin_pct,Operating Profit Margin,-44685.0,-1498.521739,11389.305532,-3.791845,3.791845
+BAJAJHLDNG,Bajaj Holdings & Investment Ltd,Financials,interest_coverage,Interest Coverage,3764.5,334.3683,912.027797,3.760995,3.760995
+INDIGO,Interglobe Aviation Ltd,Consumer Discretionary,return_on_capital_employed_pct,ROCE,4953.54,382.832857,1268.328643,3.603725,3.603725
+INDIGO,Interglobe Aviation Ltd,Consumer Discretionary,asset_turnover,Asset Turnover,56.3863,5.157843,14.215591,3.603681,3.603681
+INDIGO,Interglobe Aviation Ltd,Consumer Discretionary,return_on_equity_pct,ROE,892.57,86.724286,223.661927,3.602963,3.602963
+ICICIPRULI,ICICI Prudential Life Insurance Company Ltd,Financials,return_on_capital_employed_pct,ROCE,753.98,72.521739,196.477213,3.468383,3.468383
+INDIGO,Interglobe Aviation Ltd,Consumer Discretionary,operating_profit_margin_pct,Operating Profit Margin,16331.0,1554.357143,4311.829304,3.427001,3.427001
+PNB,Punjab National Bank,Financials,return_on_equity_pct,ROE,61.32,18.864783,12.460912,3.407071,3.407071
+TATAMOTORS,Tata Motors Ltd,Consumer Discretionary,free_cash_flow_cr,Free Cash Flow,45133.0,4444.142857,12143.017258,3.350803,3.350803
+ADANIGREEN,Adani Green Energy Ltd,Energy,debt_to_equity,Debt to Equity,6.5953,1.488664,1.559132,3.275307,3.275307
+INDIGO,Interglobe Aviation Ltd,Consumer Discretionary,pat_cagr_5yr,PAT CAGR 5Y,120.69,26.353571,30.905351,3.05243,3.05243

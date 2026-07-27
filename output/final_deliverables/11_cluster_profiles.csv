@@ -1,0 +1,6 @@
+cluster_id,cluster_name,company_count,representative_companies,return_on_equity_pct_mean,return_on_equity_pct_median,debt_to_equity_mean,debt_to_equity_median,revenue_cagr_5yr_mean,revenue_cagr_5yr_median,fcf_cagr_5yr_mean,fcf_cagr_5yr_median,operating_profit_margin_pct_mean,operating_profit_margin_pct_median
+0,Defensive Quality,59,"RELIANCE, ATGL, BPCL, TCS, SHREECEM",21.01,15.75,0.4566,0.1321,9.3581,9.66,9.9094,10.03,1588.9492,21.0
+1,Distressed or Turnaround,16,"RECLTD, IRFC, INDUSINDBK, SBIN, BAJAJFINSV",20.6381,16.275,6.8931,6.6272,16.9469,17.365,-6.2756,-7.36,-3493.625,60.5
+2,High-Quality Compounders,2,"BEL, HAL",4280.315,4280.315,0.565,0.565,9.73,9.73,32.355,32.355,28.5,28.5
+3,Emerging Growth,1,CIPLA,15.55,15.55,0.0209,0.0209,9.51,9.51,228.75,228.75,6291.0,6291.0
+4,Value Cyclicals,14,"TITAN, DMART, ADANIENT, ADANIPORTS, LTIM",81.3543,14.465,1.306,0.2672,24.1486,21.035,19.7204,17.385,2657.5714,32.0

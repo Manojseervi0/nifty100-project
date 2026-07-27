@@ -1,0 +1,623 @@
+{
+  "info": {
+    "_postman_id": "nifty100-analytics-api-v1",
+    "name": "Nifty100 Analytics API",
+    "description": "Postman collection generated from the FastAPI OpenAPI specification. Optional query parameters are included but disabled by default.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000",
+      "type": "string"
+    },
+    {
+      "key": "ticker",
+      "value": "TCS",
+      "type": "string"
+    },
+    {
+      "key": "sector",
+      "value": "Information Technology",
+      "type": "string"
+    },
+    {
+      "key": "group_name",
+      "value": "IT Services",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "health"
+              ]
+            },
+            "description": "Return API health, database counts, uptime, and version."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Companies",
+      "item": [
+        {
+          "name": "List Companies",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/companies",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "companies"
+              ],
+              "query": [
+                {
+                  "key": "sector",
+                  "value": "Information Technology",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "market_cap_category",
+                  "value": "Large Cap",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "search",
+                  "value": "TCS",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Return all companies with optional sector, category, and search filters."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Company Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/companies/{{ticker}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                "{{ticker}}"
+              ]
+            },
+            "description": "Return a full company profile with sector, KPI, and valuation data."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Balance Sheet History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/companies/{{ticker}}/bs",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                "{{ticker}}",
+                "bs"
+              ],
+              "query": [
+                {
+                  "key": "from_year",
+                  "value": "2019-03",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "to_year",
+                  "value": "2024-03",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Return Balance Sheet history for a company."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Cash Flow History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/companies/{{ticker}}/cashflow",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                "{{ticker}}",
+                "cashflow"
+              ],
+              "query": [
+                {
+                  "key": "from_year",
+                  "value": "2019-03",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "to_year",
+                  "value": "2024-03",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Return Cash Flow history for a company."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Profit And Loss History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/companies/{{ticker}}/pl",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                "{{ticker}}",
+                "pl"
+              ],
+              "query": [
+                {
+                  "key": "from_year",
+                  "value": "2019-03",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "to_year",
+                  "value": "2024-03",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Return Profit and Loss history for a company."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Financial Ratios",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/companies/{{ticker}}/ratios",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                "{{ticker}}",
+                "ratios"
+              ],
+              "query": [
+                {
+                  "key": "year",
+                  "value": "Mar 2024",
+                  "description": "Source year, calendar year, or YYYY-MM period.",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Return all ratio history or one requested financial year."
+          },
+          "response": []
+        },
+        {
+          "name": "Download Tearsheet",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/companies/{{ticker}}/tearsheet",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                "{{ticker}}",
+                "tearsheet"
+              ]
+            },
+            "description": "Download a pre-generated company tearsheet PDF."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Screener",
+      "item": [
+        {
+          "name": "Run Screener",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/screener",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "screener"
+              ],
+              "query": [
+                {
+                  "key": "min_roe",
+                  "value": "15",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "max_de",
+                  "value": "1",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "min_fcf",
+                  "value": "0",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "sector",
+                  "value": "Information Technology",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "min_rev_cagr_5yr",
+                  "value": "10",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "min_pat_cagr_5yr",
+                  "value": "10",
+                  "description": "",
+                  "disabled": true
+                },
+                {
+                  "key": "max_pe",
+                  "value": "30",
+                  "description": "",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Return a ranked company list matching the supplied financial filters."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Sectors",
+      "item": [
+        {
+          "name": "List Sectors",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/sectors",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "sectors"
+              ]
+            },
+            "description": "Return all 11 reporting sectors with company counts and median KPIs."
+          },
+          "response": []
+        },
+        {
+          "name": "List Sector Companies",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/sectors/{{sector}}/companies",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "sectors",
+                "{{sector}}",
+                "companies"
+              ]
+            },
+            "description": "Return all companies and latest KPIs for a reporting sector."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Peers",
+      "item": [
+        {
+          "name": "Compare Company With Peers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/companies/{{ticker}}/peers/compare",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                "{{ticker}}",
+                "peers",
+                "compare"
+              ]
+            },
+            "description": "Return eight-axis radar data for a company, its peers, and benchmark."
+          },
+          "response": []
+        },
+        {
+          "name": "Get Peer Group",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/peers/{{group_name}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "peers",
+                "{{group_name}}"
+              ]
+            },
+            "description": "Return latest percentile ranks for all companies in a peer group."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Valuation",
+      "item": [
+        {
+          "name": "Get Market Cap History",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/market-cap/{{ticker}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "market-cap",
+                "{{ticker}}"
+              ]
+            },
+            "description": "Return 2019-2024 valuation history for one company."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Portfolio",
+      "item": [
+        {
+          "name": "Get Portfolio Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/portfolio/stats",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "portfolio",
+                "stats"
+              ]
+            },
+            "description": "Return P10-P90 and summary statistics for ten core portfolio KPIs."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Documents",
+      "item": [
+        {
+          "name": "Get Company Documents",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/companies/{{ticker}}/documents",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "companies",
+                "{{ticker}}",
+                "documents"
+              ]
+            },
+            "description": "Return annual-report links and URL-validity flags for a company."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

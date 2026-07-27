@@ -1,0 +1,110 @@
+company_id,company_name,year,cash_from_operations_cr,capex_cr,free_cash_flow_cr,cfo_quality,fcf_status,capex_intensity_pct,capex_band,cashflow_signal
+ABB,Abbott India Ltd,Mar 2024,1213.0,416.0,797.0,Positive,Positive,34.295136026380874,Moderate,Healthy
+ADANIENSOL,Adani Energy Solutions Ltd,Mar 2024,6038.0,4943.0,1095.0,Positive,Positive,81.86485591255382,Capital Intensive,Healthy
+ADANIENT,Adani Enterprises Ltd,Mar 2024,10312.0,18767.0,-8455.0,Positive,Negative,181.99185415050428,Capital Intensive,Watch
+ADANIGREEN,Adani Green Energy Ltd,Mar 2024,7713.0,21060.0,-13347.0,Positive,Negative,273.04550758459743,Capital Intensive,Watch
+ADANIPORTS,"Adani Ports & Special Economic Zone Ltd
+",Mar 2024,15018.0,6768.0,8250.0,Positive,Positive,45.06592089492609,Moderate,Healthy
+ADANIPOWER,Adani Power Ltd,Mar 2024,14170.0,3481.0,17651.0,Positive,Positive,24.565984474241358,Asset Light,Healthy
+AMBUJACEM,Ambuja Cements Ltd,Mar 2024,5646.0,8941.0,-3295.0,Positive,Negative,158.3599008147361,Capital Intensive,Watch
+APOLLOHOSP,"Apollo Hospitals
+Chain of Indian private hospitals",Mar 2024,1920.0,1537.0,383.0,Positive,Positive,80.05208333333333,Capital Intensive,Healthy
+ASIANPAINT,"Asian Paints
+Indian Multi-National Paint and Coating Manufacturing Company",Mar 2024,6104.0,2548.0,3556.0,Positive,Positive,41.74311926605505,Moderate,Healthy
+ATGL,Adani Total Gas Ltd,,,,,Unavailable,Unavailable,,Unavailable,Insufficient Data
+AXISBANK,Axis Bank Ltd,Mar 2024,-5555.0,9001.0,-14556.0,Negative,Negative,162.03420342034204,Capital Intensive,Risk
+BAJAJ-AUTO,Bajaj Auto Ltd,Mar 2024,6558.0,72.0,6486.0,Positive,Positive,1.0978956999085088,Asset Light,Healthy
+BAJAJFINSV,Bajaj Finserv Ltd,Mar 2024,-68674.0,10960.0,-79634.0,Negative,Negative,15.959460640125812,Asset Light,Risk
+BAJAJHLDNG,Bajaj Holdings & Investment Ltd,Mar 2024,1941.0,472.0,1469.0,Positive,Positive,24.31736218444101,Asset Light,Healthy
+BAJFINANCE,Bajaj Finance Ltd,Mar 2024,-72760.0,7171.0,-79931.0,Negative,Negative,9.855689939527213,Asset Light,Risk
+BANKBARODA,Bank of Baroda,Mar 2024,-6274.0,1285.0,-7559.0,Negative,Negative,20.481351609818297,Asset Light,Risk
+BEL,Bharat Electronics Ltd,Mar 2024,4659.0,5924.0,-1265.0,Positive,Negative,127.15174930242542,Capital Intensive,Watch
+BHARTIARTL,Bharti Airtel Ltd,Mar 2024,78898.0,51089.0,27809.0,Positive,Positive,64.75322568379427,Capital Intensive,Healthy
+BHEL,"Bharat Heavy Electricals Limited
+",Mar 2024,-3713.0,1331.0,-2382.0,Negative,Negative,35.84702396983571,Moderate,Risk
+BOSCHLTD,Bosch Ltd,Mar 2024,1253.0,283.0,1536.0,Positive,Positive,22.585794094173984,Asset Light,Healthy
+BPCL,Bharat Petroleum Corporation Ltd,Mar 2024,35936.0,10521.0,25415.0,Positive,Positive,29.27704808548531,Moderate,Healthy
+BRITANNIA,Britannia Industries Ltd,Mar 2024,2573.0,477.0,3050.0,Positive,Positive,18.53867081228138,Asset Light,Healthy
+CANBK,Canara Bank,Mar 2024,15046.0,1750.0,13296.0,Positive,Positive,11.630998271965971,Asset Light,Healthy
+CHOLAFIN,Cholamandalam Investment & Finance Company Ltd,Mar 2024,-35683.0,2855.0,-38538.0,Negative,Negative,8.001008883782193,Asset Light,Risk
+CIPLA,"Cipla Ltd
+",Mar 2024,4134.0,2982.0,1152.0,Positive,Positive,72.13352685050798,Capital Intensive,Healthy
+COALINDIA,Coal India Ltd,Mar 2024,18103.0,4486.0,13617.0,Positive,Positive,24.780423134287137,Asset Light,Healthy
+DABUR,Dabur India Ltd,Mar 2024,2013.0,971.0,1042.0,Positive,Positive,48.23646299056135,Moderate,Healthy
+DIVISLAB,Divis Laboratories Ltd,Mar 2024,1261.0,269.0,992.0,Positive,Positive,21.332275971451228,Asset Light,Healthy
+DLF,DLF Ltd,Mar 2024,2539.0,1529.0,1010.0,Positive,Positive,60.22055927530524,Capital Intensive,Healthy
+DMART,Avenue Supermarts Ltd,Mar 2024,2746.0,2468.0,278.0,Positive,Positive,89.8761835396941,Capital Intensive,Healthy
+DRREDDY,Dr Reddys Laboratories Ltd,Mar 2024,4543.0,4034.0,509.0,Positive,Positive,88.79594981289897,Capital Intensive,Healthy
+EICHERMOT,Eicher Motors Ltd,Mar 2024,3724.0,2834.0,890.0,Positive,Positive,76.10096670247046,Capital Intensive,Healthy
+GAIL,GAIL (India) Ltd,Mar 2024,12586.0,8226.0,4360.0,Positive,Positive,65.35833465755601,Capital Intensive,Healthy
+GODREJCP,Godrej Consumer Products Ltd,Mar 2024,2070.0,3435.0,-1365.0,Positive,Negative,165.94202898550725,Capital Intensive,Watch
+GRASIM,Grasim Industries Ltd,Mar 2024,-10719.0,23114.0,-33833.0,Negative,Negative,215.63578692042168,Capital Intensive,Risk
+HAL,Hindustan Aeronautics Ltd,Mar 2024,8226.0,6412.0,1814.0,Positive,Positive,77.94796985168976,Capital Intensive,Healthy
+HAVELLS,Havells India Ltd,Mar 2024,1953.0,1618.0,335.0,Positive,Positive,82.84690220174092,Capital Intensive,Healthy
+HCLTECH,HCL Technologies Ltd,Mar 2024,22448.0,6608.0,15840.0,Positive,Positive,29.436920883820385,Moderate,Healthy
+HDFCBANK,HDFC Bank Ltd,Mar 2024,19069.0,16600.0,35669.0,Positive,Positive,87.05228381142169,Capital Intensive,Healthy
+HDFCLIFE,HDFC Life Insurance Company Ltd,Mar 2024,10721.0,13614.0,-2893.0,Positive,Negative,126.98442309486056,Capital Intensive,Watch
+HEROMOTOCO,"Hero MotoCorp Ltd
+",Mar 2024,4923.0,1828.0,3095.0,Positive,Positive,37.131830184846635,Moderate,Healthy
+HINDALCO,Hindalco Industries Ltd,Mar 2024,24056.0,14267.0,9789.0,Positive,Positive,59.30744928500167,Moderate,Healthy
+HINDUNILVR,"Hindustan Unilever Ltd
+",Mar 2024,15469.0,5324.0,10145.0,Positive,Positive,34.417221539853905,Moderate,Healthy
+ICICIBANK,ICICI Bank Ltd,Mar 2024,157284.0,144737.0,12547.0,Positive,Positive,92.0227105109229,Capital Intensive,Healthy
+ICICIGI,ICICI Lombard General Insurance Company Ltd,Mar 2024,2407.0,1921.0,486.0,Positive,Positive,79.8088907353552,Capital Intensive,Healthy
+ICICIPRULI,ICICI Prudential Life Insurance Company Ltd,Mar 2024,-7315.0,7420.0,105.0,Negative,Positive,101.43540669856459,Capital Intensive,Risk
+INDIGO,Interglobe Aviation Ltd,Mar 2024,21183.0,11759.0,9424.0,Positive,Positive,55.511495066798844,Moderate,Healthy
+INDUSINDBK,IndusInd Bank Ltd,Mar 2024,-16843.0,625.0,-17468.0,Negative,Negative,3.7107403669180075,Asset Light,Risk
+INFY,Infosys Ltd,Mar 2024,25210.0,5093.0,20117.0,Positive,Positive,20.20230067433558,Asset Light,Healthy
+IOC,"Indian Oil Corporation
+",Mar 2024,71099.0,31464.0,39635.0,Positive,Positive,44.25378697309385,Moderate,Healthy
+IRCTC,Indian Railway Catering & Tourism Corporation Ltd,Mar 2024,882.0,215.0,667.0,Positive,Positive,24.37641723356009,Asset Light,Healthy
+IRFC,Indian Railway Finance Corporation Ltd,Mar 2024,7914.0,8.0,7906.0,Positive,Positive,0.10108668182966893,Asset Light,Healthy
+ITC,"ITC Ltd
+",Mar 2024,17179.0,1563.0,18742.0,Positive,Positive,9.098317713487397,Asset Light,Healthy
+JINDALSTEL,Jindal Steel & Power Ltd,Mar 2024,6008.0,8344.0,-2336.0,Positive,Negative,138.8814913448735,Capital Intensive,Watch
+JIOFIN,Jio Financial Services Ltd,Mar 2024,-678.0,1441.0,763.0,Negative,Positive,212.53687315634218,Capital Intensive,Risk
+JSWENERGY,JSW Energy Ltd,Mar 2024,6234.0,8197.0,-1963.0,Positive,Negative,131.48861084376003,Capital Intensive,Watch
+JSWSTEEL,JSW Steel Ltd,Mar 2024,12078.0,14467.0,-2389.0,Positive,Negative,119.77976486173208,Capital Intensive,Watch
+KOTAKBANK,"Kotak Mahindra Bank Ltd
+",Mar 2024,15685.0,8919.0,6766.0,Positive,Positive,56.863245138667516,Moderate,Healthy
+LICI,Life Insurance Corporation of India,Mar 2024,26122.0,25269.0,853.0,Positive,Positive,96.734553250134,Capital Intensive,Healthy
+LODHA,Macrotech Developers Ltd,Mar 2024,2512.0,2947.0,-435.0,Positive,Negative,117.31687898089172,Capital Intensive,Watch
+LT,Larsen & Toubro Ltd,Mar 2024,18266.0,2179.0,20445.0,Positive,Positive,11.92926749151429,Asset Light,Healthy
+LTIM,LTIMindtree Ltd,Mar 2024,5670.0,3918.0,1752.0,Positive,Positive,69.1005291005291,Capital Intensive,Healthy
+M&M,"Mahindra & Mahindra Ltd
+",Mar 2024,-5630.0,5615.0,-11245.0,Negative,Negative,99.7335701598579,Capital Intensive,Risk
+MARUTI,Maruti Suzuki India Ltd,Mar 2024,16801.0,11865.0,4936.0,Positive,Positive,70.62079638116778,Capital Intensive,Healthy
+MOTHERSON,Samvardhana Motherson International Ltd,Mar 2024,7569.0,6644.0,925.0,Positive,Positive,87.779098956269,Capital Intensive,Healthy
+NAUKRI,Info Edge (India) Ltd,Mar 2024,702.0,852.0,-150.0,Positive,Negative,121.36752136752136,Capital Intensive,Watch
+NESTLEIND,Nestle India Ltd,Mar 2024,4175.0,1237.0,2938.0,Positive,Positive,29.628742514970057,Moderate,Healthy
+NHPC,"NHPC Ltd
+",Mar 2024,6938.0,5968.0,970.0,Positive,Positive,86.01902565580859,Capital Intensive,Healthy
+NTPC,NTPC Ltd,Mar 2024,40785.0,32141.0,8644.0,Positive,Positive,78.80593355400269,Capital Intensive,Healthy
+ONGC,Oil & Natural Gas Corpn Ltd,Mar 2024,99263.0,57203.0,42060.0,Positive,Positive,57.62771626890181,Moderate,Healthy
+PFC,Power Finance Corporation Ltd,Mar 2024,-97820.0,3409.0,-101229.0,Negative,Negative,3.48497239828256,Asset Light,Risk
+PIDILITIND,Pidilite Industries Ltd,Mar 2024,2724.0,1769.0,955.0,Positive,Positive,64.94126284875183,Capital Intensive,Healthy
+PNB,Punjab National Bank,Mar 2024,-27939.0,1506.0,-29445.0,Negative,Negative,5.390314613980458,Asset Light,Risk
+POWERGRID,Power Grid Corporation of India Ltd,Mar 2024,37290.0,13114.0,24176.0,Positive,Positive,35.16760525610083,Moderate,Healthy
+RECLTD,REC Ltd,Mar 2024,-57723.0,1831.0,-59554.0,Negative,Negative,3.172045804965092,Asset Light,Risk
+RELIANCE,"Reliance Industries Ltd
+",Mar 2024,158788.0,113581.0,45207.0,Positive,Positive,71.52996448094314,Capital Intensive,Healthy
+SBILIFE,SBI Life Insurance Company Ltd,Mar 2024,29122.0,31221.0,-2099.0,Positive,Negative,107.2076093674885,Capital Intensive,Watch
+SBIN,State Bank of India,,,,,Unavailable,Unavailable,,Unavailable,Insufficient Data
+SHREECEM,Shree Cement Ltd,Mar 2024,3347.0,1418.0,1929.0,Positive,Positive,42.36629817747236,Moderate,Healthy
+SHRIRAMFIN,"Shriram Finance Ltd
+",Mar 2024,-31101.0,258.0,-31359.0,Negative,Negative,0.8295553197646377,Asset Light,Risk
+SIEMENS,Siemens Ltd,Sep 2024,1670.0,502.0,1168.0,Positive,Positive,30.059880239520957,Moderate,Healthy
+SUNPHARMA,Sun Pharmaceuticals Industries Ltd,Mar 2024,12135.0,763.0,11372.0,Positive,Positive,6.287597857437165,Asset Light,Healthy
+TATACONSUM,Tata Consumer Products Ltd,Mar 2024,1937.0,1911.0,26.0,Positive,Positive,98.65771812080537,Capital Intensive,Healthy
+TATAMOTORS,Tata Motors Ltd,Mar 2024,67915.0,22782.0,45133.0,Positive,Positive,33.54487226680409,Moderate,Healthy
+TATAPOWER,"Tata Power Company Ltd
+",Mar 2024,12596.0,9027.0,3569.0,Positive,Positive,71.66560812956494,Capital Intensive,Healthy
+TATASTEEL,"Tata Steel Ltd
+",Mar 2024,20301.0,14253.0,6048.0,Positive,Positive,70.20836411999409,Capital Intensive,Healthy
+TCS,Tata Consultancy Services Ltd,Mar 2024,44338.0,6091.0,50429.0,Positive,Positive,13.737651675763454,Asset Light,Healthy
+TECHM,Tech Mahindra Ltd,Mar 2024,6376.0,1318.0,5058.0,Positive,Positive,20.671267252195737,Asset Light,Healthy
+TITAN,"Titan Company Ltd
+",Mar 2024,1695.0,189.0,1506.0,Positive,Positive,11.150442477876107,Asset Light,Healthy
+TORNTPHARM,Torrent Pharmaceuticals Ltd,Mar 2024,3266.0,160.0,3106.0,Positive,Positive,4.898958971218616,Asset Light,Healthy
+TRENT,Trent Ltd,Mar 2024,1349.0,508.0,841.0,Positive,Positive,37.65752409191994,Moderate,Healthy
+TVSMOTOR,TVS Motor Company Ltd,Mar 2024,-1253.0,1001.0,-2254.0,Negative,Negative,79.88826815642457,Capital Intensive,Risk
