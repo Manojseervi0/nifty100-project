@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import csv
 import hashlib
+import html
+import json
 import math
 import re
 import shutil
@@ -13,6 +15,9 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 DB_PATH = ROOT / "nifty100.db"
 OUTPUT_DIR = ROOT / "output"
 DOCS_DIR = ROOT / "docs"
@@ -214,7 +219,17 @@ def check_ac06(connection: sqlite3.Connection) -> dict[str, str]:
         if master is None or not latest:
             continue
         _, calculated = max(latest, key=lambda item: item[0])
-        comparisons.append((ticker, master, calculated, abs(calculated - master)))
+
+        # Some source columns store percentages as fractions, e.g. 0.52
+        # instead of 52.0. Normalize only when the scales clearly differ.
+        if abs(master) <= 1 and abs(calculated) > 2:
+            master *= 100
+        elif abs(calculated) <= 1 and abs(master) > 2:
+            calculated *= 100
+
+        comparisons.append(
+            (ticker, master, calculated, abs(calculated - master))
+        )
     passed = len(comparisons) == 5 and all(item[3] <= 5 for item in comparisons)
     evidence = "; ".join(f"{t}: diff={d:.2f}" for t, _, _, d in comparisons) or "No complete comparisons"
     return make_result("AC-06", "ROE matches master within 5% for five companies", passed, evidence)
@@ -231,19 +246,51 @@ def check_ac07() -> dict[str, str]:
 
 
 def check_ac08() -> dict[str, str]:
+    """Measure five Company Profile pages using the real browser mode."""
+
     script = ROOT / "tests/performance/dashboard_perf.py"
     if not script.exists():
-        return make_result("AC-08", "Company Profile loads under 3 seconds", False, "dashboard_perf.py missing")
+        return make_result(
+            "AC-08",
+            "Company Profile loads under 3 seconds",
+            False,
+            "dashboard_perf.py missing",
+        )
+
     try:
-        run = subprocess.run([sys.executable, str(script)], cwd=ROOT, capture_output=True, text=True, timeout=120)
+        run = subprocess.run(
+            [
+                sys.executable,
+                str(script),
+                "--mode",
+                "selenium",
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=240,
+        )
         output = (run.stdout or "") + "\n" + (run.stderr or "")
-        match = re.search(r"(\d+)/5 companies loaded within 3s", output)
+        match = re.search(
+            r"(\d+)/5 companies loaded within 3s",
+            output,
+        )
         passed = bool(match and int(match.group(1)) == 5)
-        evidence = match.group(0) if match else output.strip()[-400:]
+        evidence = (
+            match.group(0)
+            if match
+            else output.strip()[-700:]
+        )
     except Exception as exc:
         passed = False
         evidence = str(exc)
-    return make_result("AC-08", "Company Profile loads under 3 seconds", passed, evidence)
+
+    return make_result(
+        "AC-08",
+        "Company Profile loads under 3 seconds",
+        passed,
+        evidence,
+    )
 
 
 def check_ac09() -> dict[str, str]:
@@ -305,7 +352,7 @@ def check_ac12() -> dict[str, str]:
         response = api_client().get("/api/v1/companies/TCS/ratios")
         payload = response.json()
         if isinstance(payload, dict):
-            records = payload.get("ratios") or payload.get("history") or payload.get("data") or []
+            records = payload.get("ratios") or payload.get("history") or payload.get("records") or payload.get("data") or []
         elif isinstance(payload, list):
             records = payload
         else:
@@ -412,22 +459,159 @@ def check_ac16(connection: sqlite3.Connection) -> dict[str, str]:
 
 
 def check_ac17() -> dict[str, str]:
+    """Check tearsheet coverage and identify missing company tickers."""
+
     directory = ROOT / "reports/tearsheets"
     pdfs = list(directory.glob("*.pdf")) if directory.exists() else []
-    large = [path for path in pdfs if path.stat().st_size >= 30 * 1024]
-    return make_result("AC-17", "92 tearsheets exist and each is at least 30 KB", len(pdfs) == 92 and len(large) == 92, f"PDFs={len(pdfs)}, >=30KB={len(large)}")
+    large = [
+        path
+        for path in pdfs
+        if path.stat().st_size >= 30 * 1024
+    ]
+
+    with sqlite3.connect(DB_PATH) as connection:
+        company_ids = {
+            str(row[0]).strip().upper()
+            for row in connection.execute(
+                "SELECT id FROM companies"
+            )
+        }
+
+    pdf_ids = set()
+    for path in pdfs:
+        stem = path.stem.strip().upper()
+        for suffix in (
+            "_TEARSHEET",
+            "-TEARSHEET",
+            " TEARSHEET",
+        ):
+            if stem.endswith(suffix):
+                stem = stem[: -len(suffix)]
+                break
+        pdf_ids.add(stem)
+
+    missing = sorted(company_ids - pdf_ids)
+    undersized = sorted(
+        path.name
+        for path in pdfs
+        if path.stat().st_size < 30 * 1024
+    )
+
+    passed = (
+        len(pdfs) == 92
+        and len(large) == 92
+        and not missing
+    )
+    evidence = (
+        f"PDFs={len(pdfs)}, >=30KB={len(large)}, "
+        f"missing={missing}, undersized={undersized[:5]}"
+    )
+
+    return make_result(
+        "AC-17",
+        "92 tearsheets exist and each is at least 30 KB",
+        passed,
+        evidence,
+    )
 
 
 def check_ac18() -> dict[str, str]:
+    """Parse pytest-html 4.x and verify 60+ passes with zero failures."""
+
     path = ROOT / "reports/pytest_report.html"
     if not path.exists():
-        return make_result("AC-18", "Pytest has 60+ tests and zero failures", False, "pytest_report.html missing")
-    text = path.read_text(encoding="utf-8", errors="ignore")
-    passed_values = [int(value) for value in re.findall(r"(\d+)\s+passed", text)]
-    failed_values = [int(value) for value in re.findall(r"(\d+)\s+failed", text)]
+        return make_result(
+            "AC-18",
+            "Pytest has 60+ tests and zero failures",
+            False,
+            "pytest_report.html missing",
+        )
+
+    report_text = path.read_text(
+        encoding="utf-8",
+        errors="ignore",
+    )
+
+    passed_count = 0
+    failed_count = 0
+
+    # Plain-text summaries, supported by older pytest-html versions.
+    passed_values = [
+        int(value)
+        for value in re.findall(
+            r"(\d+)\s+passed",
+            report_text,
+            flags=re.IGNORECASE,
+        )
+    ]
+    failed_values = [
+        int(value)
+        for value in re.findall(
+            r"(\d+)\s+failed",
+            report_text,
+            flags=re.IGNORECASE,
+        )
+    ]
     passed_count = max(passed_values, default=0)
     failed_count = max(failed_values, default=0)
-    return make_result("AC-18", "Pytest has 60+ tests and zero failures", passed_count >= 60 and failed_count == 0, f"passed={passed_count}, failed={failed_count}")
+
+    # pytest-html 4.x stores results inside an escaped JSON blob.
+    blob_match = re.search(
+        r'data-jsonblob="([^"]+)"',
+        report_text,
+        flags=re.IGNORECASE,
+    )
+    if blob_match:
+        try:
+            payload = json.loads(
+                html.unescape(blob_match.group(1))
+            )
+            tests = payload.get("tests", {})
+            outcomes = []
+
+            if isinstance(tests, dict):
+                for rows in tests.values():
+                    if isinstance(rows, list):
+                        outcomes.extend(
+                            str(row.get("result", "")).lower()
+                            for row in rows
+                            if isinstance(row, dict)
+                        )
+
+            if outcomes:
+                passed_count = outcomes.count("passed")
+                failed_count = (
+                    outcomes.count("failed")
+                    + outcomes.count("error")
+                )
+        except (ValueError, TypeError, json.JSONDecodeError):
+            pass
+
+    # Last fallback: count serialized result fields.
+    if passed_count == 0:
+        passed_count = len(
+            re.findall(
+                r'["\\]result["\\]\s*:\s*["\\]Passed',
+                report_text,
+                flags=re.IGNORECASE,
+            )
+        )
+        failed_count = len(
+            re.findall(
+                r'["\\]result["\\]\s*:\s*["\\](?:Failed|Error)',
+                report_text,
+                flags=re.IGNORECASE,
+            )
+        )
+
+    passed = passed_count >= 60 and failed_count == 0
+
+    return make_result(
+        "AC-18",
+        "Pytest has 60+ tests and zero failures",
+        passed,
+        f"passed={passed_count}, failed={failed_count}",
+    )
 
 
 def check_ac19() -> dict[str, str]:
@@ -582,6 +766,19 @@ def main() -> None:
     print(f"Results CSV      : {RESULTS_CSV.relative_to(ROOT)}")
     print(f"Checklist PDF    : {CHECKLIST_PDF.relative_to(ROOT)}")
     print(f"Final archive    : {FINAL_DIR.relative_to(ROOT)}")
+
+    missing_deliverables = [
+        item
+        for item in deliverables
+        if item["status"] == FAIL
+    ]
+    for item in missing_deliverables:
+        print(
+            f"MISSING DELIVERABLE | "
+            f"{item['number']} | {item['deliverable']} | "
+            f"{item['source_path']}"
+        )
+
     print("=" * 72)
     if pass_count < 20 or deliverable_count < 23:
         print("STATUS: ACTION REQUIRED")
