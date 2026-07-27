@@ -23,28 +23,22 @@ PORTFOLIO_STATS_PATH = PROJECT_ROOT / "output" / "portfolio_stats.csv"
 
 CORE_KPIS = [
     "return_on_equity_pct",
-    "return_on_capital_employed_pct",
     "net_profit_margin_pct",
     "operating_profit_margin_pct",
     "debt_to_equity",
     "interest_coverage",
     "asset_turnover",
     "free_cash_flow_cr",
-    "revenue_cagr_5yr",
-    "pat_cagr_5yr",
 ]
 
 KPI_LABELS = {
     "return_on_equity_pct": "ROE",
-    "return_on_capital_employed_pct": "ROCE",
     "net_profit_margin_pct": "Net Profit Margin",
     "operating_profit_margin_pct": "Operating Profit Margin",
     "debt_to_equity": "Debt to Equity",
     "interest_coverage": "Interest Coverage",
     "asset_turnover": "Asset Turnover",
     "free_cash_flow_cr": "Free Cash Flow",
-    "revenue_cagr_5yr": "Revenue CAGR 5Y",
-    "pat_cagr_5yr": "PAT CAGR 5Y",
 }
 
 MONTH_NUMBERS = {
@@ -234,15 +228,12 @@ def _load_latest_company_kpis() -> list[dict[str, Any]]:
                 company_id,
                 year,
                 return_on_equity_pct,
-                return_on_capital_employed_pct,
                 net_profit_margin_pct,
                 operating_profit_margin_pct,
                 debt_to_equity,
                 interest_coverage,
                 asset_turnover,
-                free_cash_flow_cr,
-                revenue_cagr_5yr,
-                pat_cagr_5yr
+                free_cash_flow_cr
             FROM financial_ratios
             """
         ).fetchall()

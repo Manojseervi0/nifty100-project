@@ -57,15 +57,10 @@ RATIO_COLUMNS = [
     "company_id",
     "year",
     "return_on_equity_pct",
-    "return_on_capital_employed_pct",
     "net_profit_margin_pct",
     "debt_to_equity",
     "free_cash_flow_cr",
-    "revenue_cagr_5yr",
-    "pat_cagr_5yr",
-    "eps_cagr_5yr",
     "operating_profit_margin_pct",
-    "composite_quality_score",
 ]
 
 MARKET_CAP_COLUMNS = [
@@ -288,9 +283,6 @@ def _build_company_records() -> list[dict[str, Any]]:
                 "return_on_equity_pct": _safe_number(
                     ratios.get("return_on_equity_pct")
                 ),
-                "return_on_capital_employed_pct": _safe_number(
-                    ratios.get("return_on_capital_employed_pct")
-                ),
                 "net_profit_margin_pct": _safe_number(
                     ratios.get("net_profit_margin_pct")
                 ),
@@ -299,12 +291,6 @@ def _build_company_records() -> list[dict[str, Any]]:
                 ),
                 "debt_to_equity": _safe_number(ratios.get("debt_to_equity"), 4),
                 "free_cash_flow_cr": _safe_number(ratios.get("free_cash_flow_cr")),
-                "revenue_cagr_5yr": _safe_number(ratios.get("revenue_cagr_5yr")),
-                "pat_cagr_5yr": _safe_number(ratios.get("pat_cagr_5yr")),
-                "eps_cagr_5yr": _safe_number(ratios.get("eps_cagr_5yr")),
-                "composite_quality_score": _safe_number(
-                    ratios.get("composite_quality_score")
-                ),
                 "market_cap_crore": _safe_number(
                     valuation.get("market_cap_crore")
                 ),
@@ -396,10 +382,13 @@ def list_sector_companies(sector: str) -> dict[str, Any]:
         if record["reporting_sector"] == resolved_sector
     ]
 
+    # NOTE: there is no composite_quality_score column on financial_ratios
+    # (confirmed against schema); ranking uses return_on_equity_pct, which
+    # is populated for every company, as the interim ranking signal.
     companies.sort(
         key=lambda row: (
-            row["composite_quality_score"] is None,
-            -(row["composite_quality_score"] or 0),
+            row["return_on_equity_pct"] is None,
+            -(row["return_on_equity_pct"] or 0),
             row["company_id"],
         )
     )

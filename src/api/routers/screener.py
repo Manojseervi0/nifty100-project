@@ -103,8 +103,6 @@ def _validate_filters(
     min_roe: float | None,
     max_de: float | None,
     min_fcf: float | None,
-    min_rev_cagr_5yr: float | None,
-    min_pat_cagr_5yr: float | None,
     max_pe: float | None,
 ) -> None:
     """Validate screener query parameters and raise HTTP 400 when invalid."""
@@ -113,8 +111,6 @@ def _validate_filters(
         "min_roe": min_roe,
         "max_de": max_de,
         "min_fcf": min_fcf,
-        "min_rev_cagr_5yr": min_rev_cagr_5yr,
-        "min_pat_cagr_5yr": min_pat_cagr_5yr,
         "max_pe": max_pe,
     }
 
@@ -158,8 +154,6 @@ def run_screener(
     max_de: float | None = Query(default=None),
     min_fcf: float | None = Query(default=None),
     sector: str | None = Query(default=None, min_length=1),
-    min_rev_cagr_5yr: float | None = Query(default=None),
-    min_pat_cagr_5yr: float | None = Query(default=None),
     max_pe: float | None = Query(default=None),
 ) -> dict[str, Any]:
     """Return a ranked company list matching the supplied financial filters."""
@@ -168,8 +162,6 @@ def run_screener(
         min_roe=min_roe,
         max_de=max_de,
         min_fcf=min_fcf,
-        min_rev_cagr_5yr=min_rev_cagr_5yr,
-        min_pat_cagr_5yr=min_pat_cagr_5yr,
         max_pe=max_pe,
     )
 
@@ -263,8 +255,6 @@ def run_screener(
         roe = ratio.get("return_on_equity_pct")
         de = ratio.get("debt_to_equity")
         fcf = ratio.get("free_cash_flow_cr")
-        revenue_cagr = ratio.get("revenue_cagr_5yr")
-        pat_cagr = ratio.get("pat_cagr_5yr")
         pe = market.get("pe_ratio")
 
         if not _passes_minimum(roe, min_roe):
@@ -282,12 +272,6 @@ def run_screener(
         if not _passes_minimum(fcf, min_fcf):
             continue
 
-        if not _passes_minimum(revenue_cagr, min_rev_cagr_5yr):
-            continue
-
-        if not _passes_minimum(pat_cagr, min_pat_cagr_5yr):
-            continue
-
         if not _passes_maximum(pe, max_pe):
             continue
 
@@ -303,17 +287,16 @@ def run_screener(
                 "return_on_equity_pct": roe,
                 "debt_to_equity": de,
                 "free_cash_flow_cr": fcf,
-                "revenue_cagr_5yr": revenue_cagr,
-                "pat_cagr_5yr": pat_cagr,
                 "pe_ratio": pe,
-                "composite_quality_score": ratio.get("composite_quality_score"),
             }
         )
 
+    # NOTE: financial_ratios has no composite_quality_score column
+    # (confirmed against schema); ranking uses return_on_equity_pct instead.
     results.sort(
         key=lambda item: (
-            item["composite_quality_score"] is None,
-            -float(item["composite_quality_score"] or 0),
+            item["return_on_equity_pct"] is None,
+            -float(item["return_on_equity_pct"] or 0),
             str(item["company_name"] or item["company_id"]),
         )
     )
@@ -330,8 +313,6 @@ def run_screener(
             "max_de": max_de,
             "min_fcf": min_fcf,
             "sector": selected_sector,
-            "min_rev_cagr_5yr": min_rev_cagr_5yr,
-            "min_pat_cagr_5yr": min_pat_cagr_5yr,
             "max_pe": max_pe,
         },
         "companies": ranked_results,

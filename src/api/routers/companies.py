@@ -264,6 +264,7 @@ def list_companies(
             SELECT
                 c.id,
                 c.company_name,
+                c.roce_percentage,
                 s.broad_sector,
                 s.sub_sector,
                 s.market_cap_category
@@ -320,7 +321,7 @@ def list_companies(
                 "sub_sector": company.get("sub_sector"),
                 "market_cap_category": company.get("market_cap_category"),
                 "roe_pct": ratio.get("return_on_equity_pct"),
-                "roce_pct": ratio.get("return_on_capital_employed_pct", None),
+                "roce_pct": company.get("roce_percentage"),
             }
         )
 
